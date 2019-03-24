@@ -20,6 +20,10 @@ public class UserService {
         return user.getId();
     }
 
+    public User merge(User user) {
+       return entityManager.merge(user);
+    }
+
     public User find(long id) {
         return entityManager.find(User.class, id);
     }

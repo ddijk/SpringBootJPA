@@ -1,11 +1,10 @@
-package com.in28minutes.springboot.H2InMemoryDbDemo;
+package com.example.h2.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@SpringBootApplication(scanBasePackages = {"com.in28minutes", "com.example"})
-@EntityScan( basePackages = {"com.example"})
+@SpringBootApplication
 public class H2InMemoryDbDemoApplication {
 
 	public static void main(String[] args) {
