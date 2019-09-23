@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Data
 @ToString(onlyExplicitlyIncluded = true)
-@Entity
+//@Entity
 @NamedQuery(query = "select u from User u", name = "query_find_all_users")
 public class User {
 
@@ -33,9 +33,9 @@ public class User {
     }
 
 
-    @OneToMany(mappedBy = "user" , orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @MapKeyColumn(name="merk")
-            @MapKey(name="id")
-    Map<Integer, Phone> phones;
+//    @OneToMany(mappedBy = "user" , orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+////    @MapKeyColumn(name="merk")
+//            @MapKey(name="id")
+//    Map<Integer, Phone> phones;
 
 }

@@ -1,5 +1,6 @@
 package com.example.h2.user;
 
+import com.example.h2.user.opal.FiEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class UserEntityManagerCommandLineRunner implements CommandLineRunner {
     @Autowired
     PhoneRepository phoneRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+//    private UserRepository userRepository;
 
     @Override
     public void run(String... args) {
@@ -29,16 +30,13 @@ public class UserEntityManagerCommandLineRunner implements CommandLineRunner {
         log.info("-------------------------------");
         log.info("Adding Tom as Admin");
         log.info("-------------------------------");
-        User tom = new User("Tom", "Admin");
-        Phone p1 = new Phone("123", "Apple");
-        Phone p2 = new Phone("222", "Samsung");
 
-        List<Phone> phones = phoneRepository.saveAll(List.of(p1, p2));
+        FiEntity f1 = new FiEntity();
+        f1.setId(1);
+        f1.setNaam("interpolis");
+
+        List<FiEntity> phones = phoneRepository.saveAll(List.of( f1));
         System.out.println("Save phones: " + phones);
-        tom.setPhones(Map.of(phones.get(0).getId(), p1, phones.get(1).getId(), p2));
-        p1.setUser(tom);
-        p2.setUser(tom);
-        userService.merge(tom);
 
 //        userRepository.save(tom);
 //        tom = userService.find(tomId);
@@ -46,17 +44,13 @@ public class UserEntityManagerCommandLineRunner implements CommandLineRunner {
 //
 //        userService.merge(tom);
 
-        log.info("Inserted Tom" + tom);
+//        log.info("Inserted Tom" + tom);
 
         log.info("-------------------------------");
         log.info("Finding user with id 1");
         log.info("-------------------------------");
-        User user = userService.find(1L);
+//        User user = userService.find(1L);
 //        log.info(user.toString());
 
-        log.info("-------------------------------");
-        log.info("Finding all users");
-        log.info("-------------------------------");
-        log.info(userService.findAll().toString());
     }
 }

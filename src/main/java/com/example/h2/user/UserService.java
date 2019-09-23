@@ -28,9 +28,9 @@ public class UserService {
         return entityManager.find(User.class, id);
     }
 
-    public List<User> findAll() {
-        Query query = entityManager.createNamedQuery(
-                "query_find_all_users", User.class);
-        return query.getResultList();
-    }
+//    public List<User> findAll() {
+//        Query query = entityManager.createNamedQuery(
+//                "query_find_all_users", User.class);
+//        return query.getResultList();
+//    }
 }
