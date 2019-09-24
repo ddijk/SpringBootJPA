@@ -1,8 +1,6 @@
 package com.example.h2.user.opal;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -28,7 +26,8 @@ public class PersonEntity {
         this.naam = naam;
     }
 
-    @OneToMany(mappedBy = "insurancePartyPK.personId")
+    @OneToMany
+    @JoinColumn(name="PERSON_ID")
     List<InsuranceParty> insurancePartyList;
 
     @Override

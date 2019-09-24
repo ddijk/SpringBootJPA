@@ -1,12 +1,15 @@
 package com.example.h2.user.opal;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
 public class InsurancePartyPK  implements Serializable {
 
+    @Column(name="FI_ID")
     int fiId;
+    @Column(name="PERSON_ID")
     int personId;
 
     String type;

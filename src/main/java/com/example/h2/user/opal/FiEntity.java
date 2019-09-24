@@ -2,6 +2,7 @@ package com.example.h2.user.opal;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -28,11 +29,12 @@ public class FiEntity {
         this.naam = naam;
     }
 
-    @OneToMany(mappedBy = "insurancePartyPK.fiId")
+    @OneToMany
+    @JoinColumn(name="FI_ID")
     List<InsuranceParty> insurancePartyList;
 
     @Override
     public String toString() {
-        return "Fi met id "+ id;
+        return "Fi met id " + id;
     }
 }
