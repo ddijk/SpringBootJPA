@@ -1,8 +1,6 @@
 package com.example.h2.user.opal;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class InsuranceParty {
@@ -11,9 +9,11 @@ public class InsuranceParty {
     InsurancePartyPK insurancePartyPK;
 
     @ManyToOne
+    @MapsId("fiId")
     FiEntity fiEntity;
 
     @ManyToOne
+    @MapsId("personId")
     PersonEntity personEntity;
 
 

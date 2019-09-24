@@ -88,6 +88,9 @@ public class UserEntityManagerCommandLineRunner implements CommandLineRunner {
 
 
 
+         insuranceParties = insurancePartyRepo.findAll();
+
+         insuranceParties.forEach(System.out::println);
 
 
     }
@@ -99,6 +102,8 @@ public class UserEntityManagerCommandLineRunner implements CommandLineRunner {
         pk.setType(type);
         InsuranceParty insuranceParty = new InsuranceParty();
         insuranceParty.setInsurancePartyPK(pk);
+        insuranceParty.setPersonEntity(p);
+        insuranceParty.setFiEntity(fi);
         return insuranceParty;
     }
 
