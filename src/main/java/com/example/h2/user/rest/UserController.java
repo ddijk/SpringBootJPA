@@ -2,7 +2,6 @@ package com.example.h2.user.rest;
 
 import com.example.h2.user.User;
 import com.example.h2.user.UserRepository;
-import com.example.h2.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +12,6 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    UserService userService;
 
     @Autowired
     UserRepository userRepository;
@@ -22,7 +19,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") String id) {
 
-        final User user = userService.find(Long.valueOf(id));
+        final User user = userRepository.findById(Long.valueOf(id)).get();
 
         return ResponseEntity.ok(user);
     }
@@ -30,15 +27,16 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
 
-        final List<User> users = userService.findAll();
+        final List<User> users = userRepository.findAll();
 
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    @PostMapping("/{name}")
+    public ResponseEntity<User> createUser(@PathVariable String name) {
 
-        userService.insert(user);
+        User user = new User(name);
+        user = userRepository.save(user);
         return ResponseEntity.ok(user);
 
     }

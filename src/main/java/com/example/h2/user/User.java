@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @ToString(onlyExplicitlyIncluded = true)
@@ -20,21 +21,20 @@ public class User {
     @ToString.Include
     private String name;// Not perfect!! Should be a proper object!
 
-    @ToString.Include
-    private String role;// Not perfect!! An enum should be a better choice!
+//    @ToString.Include
+//    private String role;// Not perfect!! An enum should be a better choice!
 
     protected User() {
     }
 
-    public User(String name, String role) {
+    public User(String name) {
         super();
         this.name = name;
-        this.role = role;
+//        this.role = role;
     }
 
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    @MapKey(name = "id")
-    Map<Integer, Phone> phones;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    List<Phone> phones = new ArrayList<>();
 
 }

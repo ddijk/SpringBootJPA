@@ -11,7 +11,7 @@ import javax.persistence.*;
 @ToString(onlyExplicitlyIncluded = true)
 public class Phone {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @ToString.Include
     private int id;
@@ -29,9 +29,12 @@ public class Phone {
         this.merk = merk;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
     @JsonIgnore
     private User user;
+
+
 
 
 }
