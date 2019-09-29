@@ -1,6 +1,7 @@
 package com.example.h2.user.rest;
 
 import com.example.h2.user.User;
+import com.example.h2.user.UserRepository;
 import com.example.h2.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") String id) {
@@ -35,6 +39,16 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
 
         userService.insert(user);
+        return ResponseEntity.ok(user);
+
+    }
+
+    @DeleteMapping("/{name}")
+    public ResponseEntity<User> deleteUser(@PathVariable("name") String name) {
+
+        User user = userRepository.findByName(name);
+
+        userRepository.delete(user);
         return ResponseEntity.ok(user);
 
     }

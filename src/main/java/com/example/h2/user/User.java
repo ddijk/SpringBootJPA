@@ -33,9 +33,8 @@ public class User {
     }
 
 
-    @OneToMany(mappedBy = "user" , orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @MapKeyColumn(name="merk")
-            @MapKey(name="id")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @MapKey(name = "id")
     Map<Integer, Phone> phones;
 
 }
